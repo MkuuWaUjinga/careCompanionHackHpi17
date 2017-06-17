@@ -7,6 +7,63 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+  <ion-list>
+  <ion-item>
+    <ion-label fixed>Name</ion-label>
+    <ion-input type="text" value="" [(ngModel)]="myInputName"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>Street</ion-label>
+    <ion-input type="text" [(ngModel)]="myInputStreet"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>ZIP Code</ion-label>
+    <ion-input type="number" [(ngModel)]="myInputZip"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>City</ion-label>
+    <ion-input type="text" [(ngModel)]="myInputCity"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>Country</ion-label>
+    <ion-input type="text" [(ngModel)]="myInputCountry"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Diseases</ion-label>
+    <ion-select [(ngModel)]="myInputDiseases" multiple>
+      <ion-option>
+        <ion-label>Alzheimer</ion-label>
+        <ion-checkbox color="dark"></ion-checkbox>
+      </ion-option>
+      <ion-option>
+        <ion-label>Multiple Sklerosis</ion-label>
+        <ion-checkbox color="dark"></ion-checkbox>
+      </ion-option>
+      <ion-option>
+        <ion-label>Hautkrebs</ion-label>
+        <ion-checkbox color="dark"></ion-checkbox>
+      </ion-option>
+      <ion-option>
+        <ion-label>Arthrose</ion-label>
+        <ion-checkbox color="dark"></ion-checkbox>
+      </ion-option>
+      <ion-option>
+        <ion-label>Grüner Star</ion-label>
+        <ion-checkbox color="dark"></ion-checkbox>
+      </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <div padding>
+    <button ion-button block color="primary" (click)="send()">Add patient</button>
+  </div>
+
+</ion-list>
 
 </ion-content>
