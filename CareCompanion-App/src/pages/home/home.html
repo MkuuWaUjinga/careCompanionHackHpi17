@@ -1,7 +1,13 @@
 <ion-header>
   <ion-navbar>
 
-    <ion-buttons>
+    <ion-buttons [hidden]="!searchActive">
+      <button (click)="search()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons [hidden]="searchActive">
       <button (click)="search()">
         <ion-icon name="search"></ion-icon>
       </button>
@@ -19,20 +25,22 @@
 
 <ion-content>
 
-
-    <ion-item-group>
-      <ion-item-divider color="light">Search</ion-item-divider>
-      <ion-item>Angola</ion-item>
-      <ion-item>Argentina</ion-item>
-    </ion-item-group>
-
+  <div [hidden]="!searchActive">
+    <ion-searchbar
+      [(ngModel)]="myInput"
+      [showCancelButton]="shouldShowCancel"
+      (ionInput)="onInput($event)"
+      (ionCancel)="onCancel($event)"
+      >
+    </ion-searchbar>
+  </div>
 
     <ion-card>
       <ion-card-header>
-        Header
+        Welcome to the Care Companion
       </ion-card-header>
       <ion-card-content>
-        The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+        We do cool stuff.
       </ion-card-content>
     </ion-card>
 
