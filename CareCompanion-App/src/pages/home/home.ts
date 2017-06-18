@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { ModalController, Platform, NavParams, ViewController,NavController } from 'ionic-angular';
 import { AddPatientPage } from '../add-patient/add-patient';
 import { FindPatientPage } from '../find-patient/find-patient';
 import { GesundheitscloudPage } from '../gesundheitscloud/gesundheitscloud';
