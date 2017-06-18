@@ -21,9 +21,6 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-</ion-header>
-
-<ion-content>
   <div [hidden]="!searchActive">
     <ion-searchbar
       [(ngModel)]="myInput"
@@ -34,10 +31,30 @@
     </ion-searchbar>
   </div>
 
+</ion-header>
+
+
+<ion-content>
+
+
+  <ion-card color="primary">
+    <ion-card-header>
+      Feeling stressed?
+    </ion-card-header>
+    <ion-card-content (click)="changeInFlat()">
+      We offer help for you, if you have any kind of stress or not feeling well. We are here to help.<br />
+      <p style="text-align: right;">
+        <button ion-button round color="light" style="text-align: right;" (click)="changeInFlat()">Relive stress</button>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <div style="margin: 35px 0 0 0;"></div>
+
     <div [hidden]="inFlat">
       <ion-card color="green">
         <ion-card-content (click)="changeInFlat()">
-          <ion-icon name="happy" style="font-size: 50px;"></ion-icon>
+          <ion-icon name="happy" style="font-size: 35px;"></ion-icon>
           <b style="font-size: 32px;">{{ patientData?.name }}</b> is at home and everything should be allright.
         </ion-card-content>
       </ion-card>
@@ -46,15 +63,17 @@
     <div [hidden]="!inFlat">
       <ion-card color="danger">
         <ion-card-content>
-          <ion-icon name="sad" style="font-size: 50px;"></ion-icon>
+          <ion-icon name="sad" style="font-size: 35px;"></ion-icon>
           <b style="font-size: 32px;">{{ patientData?.name }}</b> is out of home. If you don't know about this ocation click on the button to locate the current position of your patient.
           <br />
-          <button ion-button block color="light" (click)="changeInFlat()">Find {{ patientData?.name }}</button>
+          <p style="text-align: right;">
+            <button ion-button round color="light" style="text-align: right;" (click)="changeInFlat()">Find {{ patientData?.name }}</button>
+          </p>
         </ion-card-content>
       </ion-card>
     </div>
 
-  <div style="margin: 50px 0 0 0;"></div>
+  <div style="margin: 35px 0 0 0;"></div>
 
   <ion-card>
       <ion-card-header>
@@ -75,11 +94,12 @@
 
     <ion-card color="primary">
       <ion-card-content>
+        <ion-icon name="analytics" style="font-size: 35px;"></ion-icon>
         <b style="font-size: 32px;">{{ patientData?.name }}'s</b> heart rate is normal. You'll be informed if something changes.
       </ion-card-content>
     </ion-card>
 
-    <div style="margin: 50px 0 0 0;"></div>
+    <div style="margin: 35px 0 0 0;"></div>
 
     <ion-list NgIf="patientData.name">
 
@@ -108,6 +128,40 @@
       </ion-item>
 
     </ion-list>
+
+    <div style="margin: 35px 0 0 0;"></div>
+
+    <ion-card color="primary">
+      <ion-card-header>
+        How was your day?
+      </ion-card-header>
+      <ion-card-content (click)="changeInFlat()">
+        You are doing one of the most important jobs - caring about people. Care Companion wants to help you stay motivated and get the help you need to help other people. Track your emotional level and get help when you need it.<br />
+        <p style="text-align: right;">
+          <button ion-button round color="light" style="text-align: right;" (click)="changeInFlat()">Track now</button>
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <div style="margin: 35px 0 0 0;"></div>
+
+    <ion-card>
+      <ion-card-header>
+        Gesundheitscloud controll pannel
+      </ion-card-header>
+      <ion-card-content>
+        <img src="assets/images/gesundheitscloud.jpg" width="100%" />
+        We give you the controll to share the data of the patient with other peers. You have full controll over the data. All data is stored encrypted with AES-256.
+        <div style="margin: 15px 0 0 0;"></div>
+
+        <p style="text-align: right;">
+          <button ion-button round color="light" style="text-align: right;">Open controll pannel</button>
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+
+
 
       <div padding>
         <button ion-button block color="primary" (click)="refreshPatientData()">Refresh</button>
