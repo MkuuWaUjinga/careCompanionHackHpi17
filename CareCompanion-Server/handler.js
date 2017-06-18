@@ -11,7 +11,10 @@ module.exports.functionName = (event, context, callback) => {
   const response = {
     statusCode: 200,
     body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully!'
+      patientId: 1,
+      inFlat: 0, 
+      heartRate: 100,
+      random: 55
     }),
   };
 
@@ -27,7 +30,8 @@ module.exports.importData = (event, context, callback) => {
   dictionary["Item"] = event.queryStringParameters;
   dictionary["TableName"] = "CareCompanion";
   dynamo.putItem(dictionary);
-  console.log(dynamo.getItem())
+  console.log(dynamo.getItem({"Key":{"patientId" : {
+  "beac":N}}, "TableName" : "CareCompanion"}))
   const response = {
     statusCode: 200,  
      body: JSON.stringify({
