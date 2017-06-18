@@ -8,6 +8,62 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+  <ion-card>
+    <ion-card-content>
+      Send your patients' collected data straight to the attending doctor before your next appointment
+
+      <div style="margin: 15px 0 0 0;"></div>
+
+      <ion-list>
+
+     <ion-item>
+        <ion-label>Start Date</ion-label>
+      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>
+      </ion-item>
+
+     <ion-item>
+        <ion-label>End Date</ion-label>
+      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>
+      </ion-item>
+
+     <ion-item>
+        <ion-label>Data</ion-label>
+        <ion-select [(ngModel)]="data" multiple>
+          <ion-option>
+        <ion-label>Heartrate</ion-label>
+        <ion-checkbox color="dark"></ion-checkbox>
+          </ion-option>
+          <ion-option>
+        <ion-label>Temperature</ion-label>
+        <ion-checkbox color="dark"></ion-checkbox>
+          </ion-option>
+          <ion-option>
+        <ion-label>Sleep Monitoring</ion-label>
+        <ion-checkbox color="dark"></ion-checkbox>
+          </ion-option>
+        </ion-select>
+      </ion-item>
+
+     <ion-item>
+        <ion-label>Doctor</ion-label>
+        <ion-select [(ngModel)]="doctor">
+          <ion-option>GP - Dr. Smith</ion-option>
+          <ion-option>Dermatologist - Dr. Meyer</ion-option>
+          <ion-option>Orthopedist- Dr. Cool</ion-option>
+        </ion-select>
+      </ion-item>
+
+     <ion-item>
+        <ion-label fixed>Note</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <button ion-button color="dark">Send Report</button>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

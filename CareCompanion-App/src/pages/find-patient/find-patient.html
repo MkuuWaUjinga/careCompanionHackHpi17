@@ -1,12 +1,25 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>Find patient</ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content>
+  <ion-card>
+    <div #map id="map"></div>
 
-<ion-content padding>
+    <ion-card-content>
+      <ion-card-title>
+        Current location of the patient
+        </ion-card-title>
+      <p>
+        This is the current position of the patient.
+      </p>
 
+      <ion-buttons end>
+      <button ion-button (click)="addMarker()"><ion-icon name="add"></ion-icon>Add Marker</button>
+    </ion-buttons>
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>

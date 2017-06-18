@@ -22,6 +22,61 @@ export class HomePage {
   patientData:any;
   inFlat: boolean;
 
+  // ##################
+  // lineChart
+  public lineChartData:Array<any> = [
+    {data: [18, 48, 77, 9, 40, 27, 40], label: 'Heart rate'}
+  ];
+
+
+  public lineChartLabels:Array<any> = ['6', '5', '4', '3', '2', '1', '0'];
+  public lineChartOptions:any = {
+    scales: {
+                       yAxes: [{
+                                display: true,
+                                stacked: true,
+                                ticks: {
+                                    min: 0 ,// minimum value
+                                    max: 150, // maximum value
+                                    stepSize : 25
+                                }
+                       }]
+                    }
+  };
+  public lineChartColors:Array<any> = [
+    { // grey
+      backgroundColor: 'rgba(148,159,177,0.2)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    }
+  ];
+  public lineChartLegend:boolean = false;
+  public lineChartType:string = 'line';
+
+  public randomize():void {
+    let _lineChartData:Array<any> = new Array(this.lineChartData.length);
+    for (let i = 0; i < this.lineChartData.length; i++) {
+      _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
+      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
+        _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
+      }
+    }
+    this.lineChartData = _lineChartData;
+  }
+
+  // events
+  public chartClicked(e:any):void {
+    console.log(e);
+  }
+
+  public chartHovered(e:any):void {
+    console.log(e);
+  }
+
+
   constructor(
     public navCtrl: NavController,
     private http: Http,
@@ -29,7 +84,7 @@ export class HomePage {
   ) {
 
     this.getPaitenInfo();
-    Observable.interval(10000).subscribe(x => {
+    Observable.interval(2000).subscribe(x => {
       this.getPaitenInfo();
     });
 
@@ -48,7 +103,36 @@ export class HomePage {
     this.http.get("https://og7h38hfi6.execute-api.us-east-1.amazonaws.com/dev/getdata")
       .subscribe(data => {
         console.log('Response');
-        console.log(data);
+        console.log('YOLO');
+        console.log(parseInt(JSON.parse(data['_body']).inFlat) == 1);
+        console.log(JSON.parse(data['_body']));
+
+        // inFlat
+        if(parseInt(JSON.parse(data['_body']).inFlat) == 1){
+          this.inFlat = false;
+        }
+        else{
+          this.inFlat = true;
+        }
+
+        /*
+        public lineChartData:Array<any> = [
+          {data: [18, 48, 77, 9, 40, 27, 40], label: 'Heart rate'}
+        ];
+        */
+        console.log('TESSSSST!');
+
+        var dataXyZ = this.lineChartData[0].data;
+        dataXyZ.splice(0, 1);
+        dataXyZ.push(JSON.parse(data['_body']).heartRate);
+
+        this.lineChartData =
+        [
+          {data: dataXyZ, label: 'Heart rate'}
+        ];
+
+        console.log(this.lineChartData);
+
       }, error => {
         console.log(JSON.stringify(error.json()));
       }
@@ -124,58 +208,5 @@ export class HomePage {
       refresher.complete();
     }, 2000);
   }
-
-  // ##################
-  // lineChart
-  public lineChartData:Array<any> = [
-    {data: [18, 48, 77, 9, 40, 27, 40], label: 'Heart rate'}
-  ];
-  public lineChartLabels:Array<any> = ['6', '5', '4', '3', '2', '1', '0'];
-  public lineChartOptions:any = {
-    scales: {
-                       yAxes: [{
-                                display: true,
-                                stacked: true,
-                                ticks: {
-                                    min: 0 ,// minimum value
-                                    max: 150, // maximum value
-                                    stepSize : 25
-                                }
-                       }]
-                    }
-  };
-  public lineChartColors:Array<any> = [
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    }
-  ];
-  public lineChartLegend:boolean = false;
-  public lineChartType:string = 'line';
-
-  public randomize():void {
-    let _lineChartData:Array<any> = new Array(this.lineChartData.length);
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-      }
-    }
-    this.lineChartData = _lineChartData;
-  }
-
-  // events
-  public chartClicked(e:any):void {
-    console.log(e);
-  }
-
-  public chartHovered(e:any):void {
-    console.log(e);
-  }
-
 
 }

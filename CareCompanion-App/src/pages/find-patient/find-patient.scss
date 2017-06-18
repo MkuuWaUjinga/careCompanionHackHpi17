@@ -1,3 +1,27 @@
 page-find-patient {
 
 }
+
+.ios, .md {
+
+    page-find-patient {
+
+      .scroll {
+        height: 100%
+      }
+
+      #map {
+        width: 100%;
+        height: 200px;
+      }
+
+    }
+
+}
+
+
+agm-map {
+  height: 300px;
+  width: 100%;
+
+}

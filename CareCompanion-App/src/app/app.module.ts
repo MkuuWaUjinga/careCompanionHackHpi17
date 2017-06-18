@@ -21,6 +21,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { Geolocation } from '@ionic-native/geolocation';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,9 @@ import { IonicStorageModule } from '@ionic/storage';
     BrowserModule,
     HttpModule,
     ChartsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCOp5hcj-xcekPbzy5OXbE2WDxouPS9ZZY'
+    }),
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp)
   ],
@@ -58,6 +63,7 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
