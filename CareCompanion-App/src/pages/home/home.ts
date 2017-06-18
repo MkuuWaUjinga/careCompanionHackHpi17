@@ -16,6 +16,7 @@ export class HomePage {
 
   searchActive:boolean;
   patientData:any;
+  inFlat: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -23,11 +24,13 @@ export class HomePage {
     public storage: Storage
   ) {
 
-    Observable.interval(5000).subscribe(x => {
+    this.getPaitenInfo();
+    Observable.interval(10000).subscribe(x => {
       this.getPaitenInfo();
     });
 
     this.searchActive = false;
+    this.inFlat = true;
 
     storage.get('patient').then((val) => {
       console.log(val);
@@ -81,7 +84,16 @@ export class HomePage {
     });
   }
 
-
+  changeInFlat = () => {
+    if(this.inFlat == false){
+      this.inFlat = true;
+      console.log(this.inFlat);
+    }
+    else{
+      this.inFlat = false;
+      console.log(this.inFlat);
+    }
+  }
 
 
 

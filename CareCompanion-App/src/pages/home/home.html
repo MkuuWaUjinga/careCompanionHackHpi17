@@ -16,7 +16,7 @@
     <ion-title>Care Companion</ion-title>
 
     <ion-buttons end>
-      <button (click)="addpatient()">
+      <button (click)="addPatient()">
         <ion-icon name="person-add" ></ion-icon>
       </button>
     </ion-buttons>
@@ -24,7 +24,6 @@
 </ion-header>
 
 <ion-content>
-
   <div [hidden]="!searchActive">
     <ion-searchbar
       [(ngModel)]="myInput"
@@ -35,12 +34,25 @@
     </ion-searchbar>
   </div>
 
-  <ion-card color="primary">
-    <ion-card-content>
-      <ion-icon name="happy" style="font-size: 50px;"></ion-icon>
-      <b style="font-size: 32px;">{{ patientData?.name }}</b> is at home and everything should be allright.
-    </ion-card-content>
-  </ion-card>
+    <div [hidden]="inFlat">
+      <ion-card color="green">
+        <ion-card-content (click)="changeInFlat()">
+          <ion-icon name="happy" style="font-size: 50px;"></ion-icon>
+          <b style="font-size: 32px;">{{ patientData?.name }}</b> is at home and everything should be allright.
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div [hidden]="!inFlat">
+      <ion-card color="danger">
+        <ion-card-content>
+          <ion-icon name="sad" style="font-size: 50px;"></ion-icon>
+          <b style="font-size: 32px;">{{ patientData?.name }}</b> is out of home. If you don't know about this ocation click on the button to locate the current position of your patient.
+          <br />
+          <button ion-button block color="light" (click)="changeInFlat()">Find {{ patientData?.name }}</button>
+        </ion-card-content>
+      </ion-card>
+    </div>
 
   <div style="margin: 50px 0 0 0;"></div>
 
@@ -98,7 +110,7 @@
     </ion-list>
 
       <div padding>
-        <button ion-button block color="primary" (click)="refreshpatientData()">Refresh</button>
+        <button ion-button block color="primary" (click)="refreshPatientData()">Refresh</button>
       </div>
 
 </ion-content>
