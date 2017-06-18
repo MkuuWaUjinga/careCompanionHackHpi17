@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     View layout ;
     IBeaconListenerSetup iBeaconHandler;
     private List<UpPlatformSdkConstants.UpPlatformAuthScope> authScope;
-    int lastPulse = 70;
+    int lastPulse = 80;
     Geolocation geolocation;
     int beacon_connected;
     double latitude = 0;

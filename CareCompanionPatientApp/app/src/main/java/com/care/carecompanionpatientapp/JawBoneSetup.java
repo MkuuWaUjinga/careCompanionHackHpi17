@@ -47,6 +47,7 @@ public class JawBoneSetup {
 
 
     public static int getRandomPulse(int lastPulse, int maxDiff){
-        return (int)((double)lastPulse+(double)maxDiff-(2.0*(double)maxDiff*Math.random()));
+        if(lastPulse <50||lastPulse>120){ return 91;}
+        return (int)((double)lastPulse+(double)maxDiff-(2.0*((double)maxDiff)*Math.random()));
     }
 }
