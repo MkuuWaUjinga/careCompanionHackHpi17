@@ -12,7 +12,7 @@ import {Observable} from 'rxjs/Rx';
 export class HomePage {
 
   searchActive:boolean;
-  paitentData:any;
+  patientData:any;
 
   constructor(
     public navCtrl: NavController,
@@ -26,17 +26,17 @@ export class HomePage {
 
     this.searchActive = false;
 
-    storage.get('paitent').then((val) => {
+    storage.get('patient').then((val) => {
       console.log(val);
-      this.paitentData = val;
-      console.log(this.paitentData.name);
+      this.patientData = val;
     });
+
   }
 
   getPaitenInfo = () => {
     console.log('Send request');
     // https://hpk5wsr3md.execute-api.us-east-1.amazonaws.com/dev/getdata
-    this.http.get("https://hpk5wsr3md.execute-api.us-east-1.amazonaws.com/dev/getdata")
+    this.http.get("https://og7h38hfi6.execute-api.us-east-1.amazonaws.com/dev/getdata")
       .subscribe(data => {
         console.log('Response');
         console.log(data);
@@ -69,6 +69,13 @@ export class HomePage {
 
   ionCancel = () => {
     console.log('search');
+  }
+
+  refreshPatientData = () => {
+    this.storage.get('patient').then((val) => {
+      console.log(val);
+      this.patientData = val;
+    });
   }
 
 }

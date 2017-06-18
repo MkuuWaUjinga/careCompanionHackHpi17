@@ -16,7 +16,7 @@
     <ion-title>Care Companion</ion-title>
 
     <ion-buttons end>
-      <button (click)="addPatient()">
+      <button (click)="addpatient()">
         <ion-icon name="person-add" ></ion-icon>
       </button>
     </ion-buttons>
@@ -29,7 +29,7 @@
     <ion-searchbar
       [(ngModel)]="myInput"
       [showCancelButton]="shouldShowCancel"
-      (ionInput)="onInput($event)"
+      (ionInput)="onInpatientent()"
       (ionCancel)="onCancel($event)"
       >
     </ion-searchbar>
@@ -43,5 +43,33 @@
         We do cool stuff.
       </ion-card-content>
     </ion-card>
+
+    <ion-list NgIf="patientData.name">
+
+      <ion-item-divider color="primary">
+        Your patient
+      </ion-item-divider>
+
+      <ion-item>
+        {{ patientData?.name }}
+      </ion-item>
+
+      <ion-item>
+        {{ patientData?.street }}
+      </ion-item>
+
+      <ion-item>
+        {{ patientData?.city }}
+      </ion-item>
+
+      <ion-item>
+        {{ patientData?.country }}
+      </ion-item>
+
+    </ion-list>
+
+      <div padding>
+        <button ion-button block color="primary" (click)="refreshpatientData()">Refresh</button>
+      </div>
 
 </ion-content>
