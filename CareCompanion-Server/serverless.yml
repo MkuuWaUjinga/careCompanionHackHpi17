@@ -64,20 +64,21 @@ iamRoleStatements: # permissions for all of your functions can be set here
 #    - exclude-me-dir/**
 
 functions:
+  importData: 
+    handler: handler.importData
+    cors: true
+    events:
+      - http:
+          path: upload/create
+          method: post
   functionName:
     handler: handler.functionName
     cors: true
     events: 
       - http: 
           path: getdata 
-          method: GET
-  importData: 
-    handler: handler.importData
-    cors: true
-    events:
-      - http:
-          path: upload 
-          method: POST
+          method: get
+
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

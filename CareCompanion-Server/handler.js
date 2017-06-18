@@ -22,10 +22,14 @@ module.exports.functionName = (event, context, callback) => {
 };
 
 module.exports.importData = (event, context, callback) => {
-  console.log('Received event:', JSON.stringify(event, null, 2))
-  //dynamo.putItem(JSON.parse(event.body), done);
+  console.log('Received event:', event);
+  var dictionary = {};
+  dictionary["Item"] = event.queryStringParameters;
+  dictionary["TableName"] = "CareCompanion";
+  dynamo.putItem(dictionary);
+  console.log(dynamo.getItem())
   const response = {
-    statusCode: 200, 
+    statusCode: 200,  
      body: JSON.stringify({
            message: 'Go Serverless v1.0! Your function executed successfully!'
       }),
