@@ -1,11 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
 import { AddPatientPage } from '../add-patient/add-patient';
-import { GesundheitscloudPage } from '../gesundheitscloud/gesundheitscloud';
-import { RateYourDayPage } from '../rate-your-day/rate-your-day';
-import { ReliveStressPage } from '../relive-stress/relive-stress';
-
 import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import {Observable} from 'rxjs/Rx';
@@ -41,6 +36,7 @@ export class HomePage {
       console.log(val);
       this.patientData = val;
     });
+
   }
 
   getPaitenInfo = () => {
@@ -99,9 +95,7 @@ export class HomePage {
     }
   }
 
-  reliveStress = () => {
-    this.navCtrl.push(ReliveStressPage, {});
-  }
+
 
 
   // ##################
