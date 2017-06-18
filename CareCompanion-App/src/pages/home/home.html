@@ -35,19 +35,44 @@
     </ion-searchbar>
   </div>
 
-    <ion-card>
+  <ion-card color="primary">
+    <ion-card-content>
+      <ion-icon name="happy" style="font-size: 50px;"></ion-icon>
+      <b style="font-size: 32px;">{{ patientData?.name }}</b> is at home and everything should be allright.
+    </ion-card-content>
+  </ion-card>
+
+  <div style="margin: 50px 0 0 0;"></div>
+
+  <ion-card>
       <ion-card-header>
-        Welcome to the Care Companion
+        {{ patientData?.name }}'s' heart rate
       </ion-card-header>
       <ion-card-content>
-        We do cool stuff.
+        <canvas baseChart width="400" height="400"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
       </ion-card-content>
     </ion-card>
+
+    <ion-card color="primary">
+      <ion-card-content>
+        <b style="font-size: 32px;">{{ patientData?.name }}'s</b> heart rate is normal. You'll be informed if something changes.
+      </ion-card-content>
+    </ion-card>
+
+    <div style="margin: 50px 0 0 0;"></div>
 
     <ion-list NgIf="patientData.name">
 
       <ion-item-divider color="primary">
-        Your patient
+        Your patient information
       </ion-item-divider>
 
       <ion-item>
@@ -64,6 +89,10 @@
 
       <ion-item>
         {{ patientData?.country }}
+      </ion-item>
+
+      <ion-item color="light">
+        <a (click)="addPatient()"><ion-icon name="create"></ion-icon> Edit patient information</a>
       </ion-item>
 
     </ion-list>

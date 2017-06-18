@@ -9,6 +9,9 @@ import { HomePage } from '../pages/home/home';
 import { AddPatientPage } from '../pages/add-patient/add-patient';
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+import '../../node_modules/chart.js/dist/Chart.bundle.min.js';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
@@ -26,6 +29,7 @@ import { IonicStorageModule } from '@ionic/storage';
   imports: [
     BrowserModule,
     HttpModule,
+    ChartsModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp)
   ],
