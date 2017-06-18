@@ -37,7 +37,7 @@
     <ion-card-header>
       Feeling stressed?
     </ion-card-header>
-    <ion-card-content (click)="changeInFlat()">
+    <ion-card-content>
       We offer help for you, if you have any kind of stress or not feeling well. We are here to help.<br />
       <p style="text-align: right;">
         <button ion-button round color="light" style="text-align: right;" (click)="reliveStress()">Relive stress</button>
@@ -59,11 +59,11 @@
     <div [hidden]="!inFlat">
       <ion-card color="danger">
         <ion-card-content>
-          <ion-icon name="sad" style="font-size: 35px;"></ion-icon>
+          <ion-icon name="sad" style="font-size: 35px;" (click)="changeInFlat()"></ion-icon>
           <b style="font-size: 32px;">{{ patientData?.name }}</b> is out of home. If you don't know about this ocation click on the button to locate the current position of your patient.
           <br />
           <p style="text-align: right;">
-            <button ion-button round color="light" style="text-align: right;" (click)="changeInFlat()">Find {{ patientData?.name }}</button>
+            <button ion-button round color="light" style="text-align: right;" (click)="findPatient()">Find {{ patientData?.name }}</button>
           </p>
         </ion-card-content>
       </ion-card>
@@ -131,10 +131,10 @@
       <ion-card-header>
         How was your day?
       </ion-card-header>
-      <ion-card-content (click)="changeInFlat()">
+      <ion-card-content>
         You are doing one of the most important jobs - caring about people. Care Companion wants to help you stay motivated and get the help you need to help other people. Track your emotional level and get help when you need it.<br />
         <p style="text-align: right;">
-          <button ion-button round color="light" style="text-align: right;" (click)="changeInFlat()">Track now</button>
+          <button ion-button round color="light" style="text-align: right;" (click)="rateYourDay()">Rate your day</button>
         </p>
       </ion-card-content>
     </ion-card>
@@ -151,7 +151,7 @@
         <div style="margin: 15px 0 0 0;"></div>
 
         <p style="text-align: right;">
-          <button ion-button round color="light" style="text-align: right;">Open controll pannel</button>
+          <button ion-button round color="light" style="text-align: right;" (click)="gesundheitscloud()">Open controll pannel</button>
         </p>
       </ion-card-content>
     </ion-card>

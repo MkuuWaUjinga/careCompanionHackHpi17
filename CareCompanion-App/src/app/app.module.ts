@@ -10,6 +10,8 @@ import { GesundheitscloudPage } from '../pages/gesundheitscloud/gesundheitscloud
 import { RateYourDayPage } from '../pages/rate-your-day/rate-your-day';
 import { ReliveStressPage } from '../pages/relive-stress/relive-stress';
 import { AddPatientPage } from '../pages/add-patient/add-patient';
+import { FindPatientPage } from '../pages/find-patient/find-patient';
+
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
@@ -27,6 +29,7 @@ import { IonicStorageModule } from '@ionic/storage';
     ContactPage,
     HomePage,
     AddPatientPage,
+    FindPatientPage,
     GesundheitscloudPage,
     RateYourDayPage,
     ReliveStressPage,
@@ -46,6 +49,10 @@ import { IonicStorageModule } from '@ionic/storage';
     ContactPage,
     HomePage,
     AddPatientPage,
+    FindPatientPage,
+    GesundheitscloudPage,
+    RateYourDayPage,
+    ReliveStressPage,
     TabsPage
   ],
   providers: [
