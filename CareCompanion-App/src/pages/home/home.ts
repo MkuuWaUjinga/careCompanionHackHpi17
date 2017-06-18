@@ -114,6 +114,17 @@ export class HomePage {
     this.navCtrl.push(GesundheitscloudPage, {});
   }
 
+
+  doRefresh = (refresher) => {
+    console.log('Begin async operation', refresher);
+    this.getPaitenInfo();
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
+
   // ##################
   // lineChart
   public lineChartData:Array<any> = [
