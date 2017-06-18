@@ -39,6 +39,8 @@
     </ion-card-header>
     <ion-card-content>
       We offer help for you, if you have any kind of stress or not feeling well. We are here to help.<br />
+      <div style="margin: 15px 0 0 0;"></div>
+
       <p style="text-align: right;">
         <button ion-button round color="light" style="text-align: right;" (click)="reliveStress()">Relive stress</button>
       </p>
@@ -62,6 +64,8 @@
           <ion-icon name="sad" style="font-size: 35px;" (click)="changeInFlat()"></ion-icon>
           <b style="font-size: 32px;">{{ patientData?.name }}</b> is out of home. If you don't know about this ocation click on the button to locate the current position of your patient.
           <br />
+          <div style="margin: 15px 0 0 0;"></div>
+
           <p style="text-align: right;">
             <button ion-button round color="light" style="text-align: right;" (click)="findPatient()">Find {{ patientData?.name }}</button>
           </p>
@@ -97,33 +101,35 @@
 
     <div style="margin: 35px 0 0 0;"></div>
 
-    <ion-list NgIf="patientData.name">
+    <ion-card color="primary">
+      <ion-list NgIf="patientData.name">
 
-      <ion-item-divider color="primary">
-        Your patient information
-      </ion-item-divider>
+        <ion-item-divider color="primary">
+          Your patient information
+        </ion-item-divider>
 
-      <ion-item>
-        {{ patientData?.name }}
-      </ion-item>
+        <ion-item>
+          {{ patientData?.name }}
+        </ion-item>
 
-      <ion-item>
-        {{ patientData?.street }}
-      </ion-item>
+        <ion-item>
+          {{ patientData?.street }}
+        </ion-item>
 
-      <ion-item>
-        {{ patientData?.city }}
-      </ion-item>
+        <ion-item>
+          {{ patientData?.city }}
+        </ion-item>
 
-      <ion-item>
-        {{ patientData?.country }}
-      </ion-item>
+        <ion-item>
+          {{ patientData?.country }}
+        </ion-item>
 
-      <ion-item color="light">
-        <a (click)="addPatient()"><ion-icon name="create"></ion-icon> Edit patient information</a>
-      </ion-item>
+        <ion-item color="light">
+          <a (click)="addPatient()"><ion-icon name="create"></ion-icon> Edit patient information</a>
+        </ion-item>
 
-    </ion-list>
+      </ion-list>
+    </ion-card>
 
     <div style="margin: 35px 0 0 0;"></div>
 
@@ -133,6 +139,9 @@
       </ion-card-header>
       <ion-card-content>
         You are doing one of the most important jobs - caring about people. Care Companion wants to help you stay motivated and get the help you need to help other people. Track your emotional level and get help when you need it.<br />
+
+        <div style="margin: 15px 0 0 0;"></div>
+
         <p style="text-align: right;">
           <button ion-button round color="light" style="text-align: right;" (click)="rateYourDay()">Rate your day</button>
         </p>
@@ -148,6 +157,7 @@
       <ion-card-content>
         <img src="assets/images/gesundheitscloud.jpg" width="100%" />
         We give you the control to share the data of the patient with other peers. You have full controll over the data. All data is stored encrypted with AES-256.
+
         <div style="margin: 15px 0 0 0;"></div>
 
         <p style="text-align: right;">
