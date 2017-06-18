@@ -29,7 +29,7 @@ export class AddPatientPage {
   }
 
   send = () => {
-    this.storage.set('paitent', {
+    this.storage.set('patient', {
       "name" : this.myInputName,
       "street" : this.myInputStreet,
       "zip" : this.myInputZip,
@@ -37,8 +37,13 @@ export class AddPatientPage {
       "country" : this.myInputCountry,
       "diseases" : this.myInputDiseases
     });
+
     console.log('Form was submitted');
     console.log(this.myInputName);
+    console.log('####');
+    this.storage.get('patient').then((val) => {
+      console.log(val);
+    });
   }
 
 

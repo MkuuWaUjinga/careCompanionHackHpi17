@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-
+    <!--
     <ion-buttons [hidden]="!searchActive">
       <button (click)="search()">
         <ion-icon name="close"></ion-icon>
@@ -12,35 +12,164 @@
         <ion-icon name="search"></ion-icon>
       </button>
     </ion-buttons>
+  -->
+
 
     <ion-title>Care Companion</ion-title>
 
     <ion-buttons end>
       <button (click)="addPatient()">
-        <ion-icon name="person-add" ></ion-icon>
+        <ion-icon name="person-add" style="font-size: 25px;"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
-</ion-header>
-
-<ion-content>
-
   <div [hidden]="!searchActive">
     <ion-searchbar
       [(ngModel)]="myInput"
       [showCancelButton]="shouldShowCancel"
-      (ionInput)="onInput($event)"
+      (ionInput)="onInpatientent()"
       (ionCancel)="onCancel($event)"
       >
     </ion-searchbar>
   </div>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)" color="light">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-card color="primary">
+    <ion-card-header>
+      Feeling stressed?
+    </ion-card-header>
+    <ion-card-content>
+      We offer help for you, if you have any kind of stress or not feeling well. We are here to help.<br />
+      <div style="margin: 15px 0 0 0;"></div>
+
+      <p style="text-align: right;">
+        <button ion-button round color="light" style="text-align: right;" (click)="reliveStress()">Relive stress</button>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <div style="margin: 35px 0 0 0;"></div>
+
+    <div [hidden]="inFlat">
+      <ion-card color="green">
+        <ion-card-content (click)="changeInFlat()">
+          <ion-icon name="happy" style="font-size: 35px;"></ion-icon>
+          <b style="font-size: 32px;">{{ patientData?.name }}</b> is at home and everything should be allright.
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div [hidden]="!inFlat">
+      <ion-card color="danger">
+        <ion-card-content>
+          <ion-icon name="sad" style="font-size: 35px;" (click)="changeInFlat()"></ion-icon>
+          <b style="font-size: 32px;">{{ patientData?.name }}</b> is out of home. If you don't know about this ocation click on the button to locate the current position of your patient.
+          <br />
+          <div style="margin: 15px 0 0 0;"></div>
+
+          <p style="text-align: right;">
+            <button ion-button round color="light" style="text-align: right;" (click)="findPatient()">Find {{ patientData?.name }}</button>
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+  <div style="margin: 35px 0 0 0;"></div>
+
+  <ion-card>
+      <ion-card-header>
+        {{ patientData?.name }}'s' heart rate
+      </ion-card-header>
+      <ion-card-content>
+        <canvas baseChart width="400" height="400"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card color="primary">
+      <ion-card-content>
+        <ion-icon name="analytics" style="font-size: 35px;"></ion-icon>
+        <b style="font-size: 32px;">{{ patientData?.name }}'s</b> heart rate is normal. You'll be informed if something changes.
+      </ion-card-content>
+    </ion-card>
+
+    <div style="margin: 35px 0 0 0;"></div>
+
+    <ion-card color="primary">
+      <ion-list NgIf="patientData.name">
+
+        <ion-item-divider color="primary">
+          Your patient information
+        </ion-item-divider>
+
+        <ion-item>
+          <b>Name:</b><br />
+          {{ patientData?.name }}<br />
+          <br />
+          <b>Adress:</b><br />
+          {{ patientData?.street }}<br />
+          {{ patientData?.city }}<br />
+          {{ patientData?.country }}
+        </ion-item>
+
+        <ion-item color="light">
+          <a (click)="addPatient()"><ion-icon name="create"></ion-icon> Edit patient information</a>
+        </ion-item>
+
+      </ion-list>
+    </ion-card>
+
+    <div style="margin: 35px 0 0 0;"></div>
+
+    <ion-card color="primary">
+      <ion-card-header>
+        How was your day?
+      </ion-card-header>
+      <ion-card-content>
+        You are doing one of the most important jobs - caring about people. Care Companion wants to help you stay motivated and get the help you need to help other people. Track your emotional level and get help when you need it.<br />
+
+        <div style="margin: 15px 0 0 0;"></div>
+
+        <p style="text-align: right;">
+          <button ion-button round color="light" style="text-align: right;" (click)="rateYourDay()">Rate your day</button>
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <div style="margin: 35px 0 0 0;"></div>
 
     <ion-card>
       <ion-card-header>
-        Welcome to the Care Companion
+        Gesundheitscloud control pannel
       </ion-card-header>
       <ion-card-content>
-        We do cool stuff.
+        <img src="assets/images/gesundheitscloud.jpg" width="100%" />
+        We give you the control to share the data of the patient with other peers. You have full controll over the data. All data is stored encrypted with AES-256.
+
+        <div style="margin: 15px 0 0 0;"></div>
+
+        <p style="text-align: right;">
+          <button ion-button round color="light" style="text-align: right;" (click)="gesundheitscloud()">Open controll pannel</button>
+        </p>
       </ion-card-content>
     </ion-card>
 
