@@ -14,7 +14,6 @@ module.exports.functionName = (event, context, callback) => {
     }}
     ).promise()
   .then(item => {
-    console.log(item.Item);
     const response = {
       statusCode: 200,
       body: JSON.stringify({
@@ -40,11 +39,11 @@ module.exports.importData = (event, context, callback) => {
         }
     }).promise()
     .then(item => {
-      console.log(item);
       const response = {
         statusCode: 200,  
         body: JSON.stringify({
-           message: 'Go Serverless v1.0! Your function executed successfully!'
+           message: 'Upload successfull',
+           object: event.queryStringParameters
         }),
       };
       callback(null, response);
